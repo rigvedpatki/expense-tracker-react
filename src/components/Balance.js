@@ -15,7 +15,7 @@ export const Balance = () => {
     <>
       <h4>Your Balance</h4>
       <h1>
-        {sign} ₹ {balance}
+        {sign} ₹ {Math.abs(balance).toFixed(2)}
       </h1>
     </>
   )

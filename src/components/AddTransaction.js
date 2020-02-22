@@ -1,8 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import { GlobalContext } from '../context/GlobalState'
 
 export const AddTransaction = () => {
   const [text, setText] = useState('')
   const [amount, setAmount] = useState(0)
+
+  const { addTransaction } = useContext(GlobalContext)
 
   return (
     <>
@@ -29,7 +32,15 @@ export const AddTransaction = () => {
             onChange={event => setAmount(event.target.value)}
           />
         </div>
-        <button className="btn">Add transaction</button>
+        <button
+          className="btn"
+          onClick={event => {
+            event.preventDefault()
+            addTransaction({ text, amount: parseFloat(amount) })
+          }}
+        >
+          Add transaction
+        </button>
       </form>
     </>
   )
